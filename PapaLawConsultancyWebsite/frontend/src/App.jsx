@@ -23,6 +23,8 @@ import Modal from "./components/Modal.jsx";
 import UpiPaymentPage from "./components/UpiPaymentPage.jsx";
 import ServicesSection from "./components/ServicesSection.jsx";
 
+const API_BASE_URL = "https://papa-law-consultancy-backend.vercel.app";
+
 function App() {
   const [user, setUser] = useState(null);
   const [sessionReady, setSessionReady] = useState(false);
@@ -44,7 +46,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("/api/session", { credentials: "include" })
+    fetch(`${API_BASE_URL}/api/session`, { credentials: "include" })
       .then(async (response) => {
         if (!response.ok) throw new Error("Could not check your sign-in status.");
         const data = await response.json();
@@ -70,7 +72,7 @@ function App() {
 
     let active = true;
     setBookingsLoading(true);
-    fetch("/api/bookings", { credentials: "include" })
+    fetch(`${API_BASE_URL}/api/bookings`, { credentials: "include" })
       .then(async (response) => {
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || "Couldn't load your bookings.");
@@ -99,7 +101,7 @@ function App() {
     const formData = new FormData(event.currentTarget);
     const payload = Object.fromEntries(formData.entries());
     try {
-      const response = await fetch(`/api/${authMode}`, {
+      const response = await fetch(`${API_BASE_URL}/api/${authMode}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -123,7 +125,7 @@ function App() {
     event.preventDefault();
     const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await fetch(`${API_BASE_URL}/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -158,7 +160,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/logout", { method: "POST", credentials: "include" });
+      const response = await fetch(`${API_BASE_URL}/api/logout`, { method: "POST", credentials: "include" });
       if (!response.ok) throw new Error("Couldn't sign out. Please try again.");
       setUser(null);
       navigateTo("/");

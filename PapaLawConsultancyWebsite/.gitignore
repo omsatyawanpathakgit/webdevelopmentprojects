@@ -4,3 +4,5 @@ backend/__pycache__/
 backend/.venv/
 backend/*.sqlite3
 backend/.env
+.vercel
+.env*
