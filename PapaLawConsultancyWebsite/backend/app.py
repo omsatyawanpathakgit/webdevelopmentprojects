@@ -14,7 +14,7 @@ from urllib.parse import urlencode
 from flask import Flask, g, jsonify, request, session
 from dotenv import load_dotenv
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from flask_cors import CORS
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
@@ -24,6 +24,12 @@ TIME_SLOTS = {"09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17
 
 def create_app(test_config=None):
     app = Flask(__name__)
+    CORS(
+        app,
+        origins=["https://papa-law-consultancy-frontend.vercel.app"],
+        supports_credentials=True
+    )
+    CORS(app)
     app.config.from_mapping(
         SECRET_KEY=os.environ.get("TECHJURE_SECRET_KEY") or secrets.token_hex(32),
         DATABASE=str(DATABASE),
