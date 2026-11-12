@@ -47,7 +47,7 @@ class ConsultationApiTests(unittest.TestCase):
     def test_complimentary_and_paid_bookings_email_all_booking_details(self):
         self.register()
         self.app.config.update(
-            TECHJURE_BOOKING_NOTIFICATION_EMAIL="tech.jureconsultancy@gmail.com",
+            TECHJURE_BOOKING_NOTIFICATION_EMAIL="sanjay.techjure@gmail.com",
             TECHJURE_SMTP_HOST="smtp.example.com",
             TECHJURE_SMTP_PORT=587,
             TECHJURE_SMTP_USERNAME="sender@example.com",
@@ -65,7 +65,7 @@ class ConsultationApiTests(unittest.TestCase):
         complimentary_email, paid_email = [
             call.args[0] for call in smtp.send_message.call_args_list
         ]
-        self.assertEqual(complimentary_email["To"], "tech.jureconsultancy@gmail.com")
+        self.assertEqual(complimentary_email["To"], "sanjay.techjure@gmail.com")
         self.assertIn("Client name: Test Client", complimentary_email.get_content())
         self.assertIn("Client email: client@example.com", complimentary_email.get_content())
         self.assertIn("Consultation fee: Complimentary", complimentary_email.get_content())

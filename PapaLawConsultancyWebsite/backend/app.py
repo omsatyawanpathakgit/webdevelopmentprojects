@@ -30,7 +30,7 @@ def create_app(test_config=None):
         TECHJURE_UPI_ID=os.environ.get("TECHJURE_UPI_ID", "").strip(),
         TECHJURE_ADMIN_TOKEN=os.environ.get("TECHJURE_ADMIN_TOKEN", ""),
         TECHJURE_BOOKING_NOTIFICATION_EMAIL=os.environ.get(
-            "TECHJURE_BOOKING_NOTIFICATION_EMAIL", "tech.jureconsultancy@gmail.com"
+            "TECHJURE_BOOKING_NOTIFICATION_EMAIL", "sanjay.techjure@gmail.com"
         ).strip(),
         TECHJURE_SMTP_HOST=os.environ.get("TECHJURE_SMTP_HOST", "smtp.gmail.com").strip(),
         TECHJURE_SMTP_PORT=int(os.environ.get("TECHJURE_SMTP_PORT", "587")),

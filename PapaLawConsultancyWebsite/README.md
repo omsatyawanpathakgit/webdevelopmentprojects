@@ -19,7 +19,7 @@ pip install -r requirements.txt
 flask --app app run --debug
 ```
 
-Before starting Flask, edit `backend/.env`. The receiving UPI ID is already set to `9904407787@ptaxis`; add a long random `TECHJURE_SECRET_KEY` and `TECHJURE_ADMIN_TOKEN`. Configure `TECHJURE_SMTP_USERNAME` and `TECHJURE_SMTP_PASSWORD` with the Gmail account's address and an app password to email each booking to `tech.jureconsultancy@gmail.com`. Optional settings are `TECHJURE_SMTP_HOST`, `TECHJURE_SMTP_PORT`, `TECHJURE_SMTP_FROM_EMAIL`, and `TECHJURE_BOOKING_NOTIFICATION_EMAIL`. This file is excluded from Git. The API is available at `http://127.0.0.1:5000`. SQLite creates `backend/techjure.sqlite3` on first run. Set `TECHJURE_DATABASE` to use another database path.
+Before starting Flask, edit `backend/.env`. The receiving UPI ID is already set to `9904407787@ptaxis`; add a long random `TECHJURE_SECRET_KEY` and `TECHJURE_ADMIN_TOKEN`. Configure `TECHJURE_SMTP_USERNAME` and `TECHJURE_SMTP_PASSWORD` with the Gmail account's address and an app password to email each booking to `sanjay.techjure@gmail.com`. Optional settings are `TECHJURE_SMTP_HOST`, `TECHJURE_SMTP_PORT`, `TECHJURE_SMTP_FROM_EMAIL`, and `TECHJURE_BOOKING_NOTIFICATION_EMAIL`. This file is excluded from Git. The API is available at `http://127.0.0.1:5000`. SQLite creates `backend/techjure.sqlite3` on first run. Set `TECHJURE_DATABASE` to use another database path.
 
 ### Frontend
 
@@ -45,7 +45,7 @@ Configure the backend `.env` values:
 TECHJURE_UPI_ID=9904407787@ptaxis
 TECHJURE_SECRET_KEY=your-long-random-secret
 TECHJURE_ADMIN_TOKEN=your-long-random-admin-token
-TECHJURE_SMTP_USERNAME=tech.jureconsultancy@gmail.com
+TECHJURE_SMTP_USERNAME=sanjay.techjure@gmail.com
 TECHJURE_SMTP_PASSWORD=your-gmail-app-password
 ```
 
