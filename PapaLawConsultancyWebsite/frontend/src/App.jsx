@@ -285,6 +285,7 @@ function App() {
       {payment && (
         <UpiPaymentPage
           payment={payment}
+          apiBaseUrl={API_BASE_URL}
           onBack={() => setPayment(null)}
           onSubmitted={() => {
             setNotice("Payment reference submitted. Your booking is pending manual verification.");

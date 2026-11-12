@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Copy, Landmark, LockKeyhole } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
-export default function UpiPaymentPage({ payment, onBack, onSubmitted }) {
+export default function UpiPaymentPage({ payment, apiBaseUrl, onBack, onSubmitted }) {
   const [reference, setReference] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
@@ -24,12 +24,16 @@ export default function UpiPaymentPage({ payment, onBack, onSubmitted }) {
     setBusy(true);
     setMessage("");
     try {
-      const response = await fetch(`/api/payments/${encodeURIComponent(payment.order_id)}/reference`, {
+      const response = await fetch(`${apiBaseUrl}/api/payments/${encodeURIComponent(payment.order_id)}/reference`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ reference: reference.trim() }),
       });
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) {
+        throw new Error("The payment API returned an unexpected response. Check that the backend deployment is running.");
+      }
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Couldn't submit your payment reference.");
       setSubmitted(true);
