@@ -24,12 +24,7 @@ TIME_SLOTS = {"09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    CORS(
-        app,
-        origins=["https://papa-law-consultancy-frontend.vercel.app"],
-        supports_credentials=True
-    )
-    CORS(app)
+
     app.config.from_mapping(
         SECRET_KEY=os.environ.get("TECHJURE_SECRET_KEY") or secrets.token_hex(32),
         DATABASE=str(DATABASE),
@@ -43,9 +38,18 @@ def create_app(test_config=None):
         TECHJURE_SMTP_USERNAME=os.environ.get("TECHJURE_SMTP_USERNAME", "").strip(),
         TECHJURE_SMTP_PASSWORD=os.environ.get("TECHJURE_SMTP_PASSWORD", ""),
         TECHJURE_SMTP_FROM_EMAIL=os.environ.get("TECHJURE_SMTP_FROM_EMAIL", "").strip(),
+
         SESSION_COOKIE_HTTPONLY=True,
-        SESSION_COOKIE_SAMESITE="Lax",
+        SESSION_COOKIE_SAMESITE="None",
+        SESSION_COOKIE_SECURE=True,
+
         MAX_CONTENT_LENGTH=64 * 1024,
+    )
+
+    CORS(
+        app,
+        origins=["https://papa-law-consultancy-frontend.vercel.app"],
+        supports_credentials=True
     )
     if test_config:
         app.config.update(test_config)
